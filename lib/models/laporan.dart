@@ -31,7 +31,7 @@ class Laporan {
 class Komentar {
   final String nama;
   final String isi;
-  final DateTime time;
+  // final DateTime time;
 
-  Komentar({required this.nama, required this.isi, required this.time});
+  Komentar({required this.nama, required this.isi});
 }

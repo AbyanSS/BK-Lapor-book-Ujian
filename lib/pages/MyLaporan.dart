@@ -37,7 +37,6 @@ class _MyLaporanState extends State<MyLaporan> {
             return Komentar(
               nama: map['nama'],
               isi: map['isi'],
-              time: map['time'],
             );
           }).toList();
           listLaporan.add(

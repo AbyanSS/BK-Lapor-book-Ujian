@@ -21,7 +21,7 @@ class _DetailPageState extends State<DetailPage> {
   bool _isLoading = false;
 
   String? status;
-  String? komentar;
+  // String? komentar;
   TextEditingController komenController = TextEditingController();
 
   Future launch(String uri) async {
@@ -42,17 +42,17 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  void komentarDialog(Laporan laporan) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return KomentarDialog(
-          laporan: laporan,
-          // komentar: komentar,
-        );
-      },
-    );
-  }
+  // void komentarDialog(Laporan laporan) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return KomentarDialog(
+  //         laporan: laporan,
+  //         // komentar: komentar,
+  //       );
+  //     },
+  //   );
+  // }
 
   void tambahLike(Laporan laporan) {
     setState(() {
@@ -68,8 +68,8 @@ class _DetailPageState extends State<DetailPage> {
     Laporan laporan = arguments['laporan'];
     Akun akun = arguments['akun'];
 
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    CollectionReference komentarCollection = firestore.collection('komentar');
+    // FirebaseFirestore firestore = FirebaseFirestore.instance;
+    // CollectionReference komentarCollection = firestore.collection('komentar');
 
     return Scaffold(
       appBar: AppBar(
@@ -305,10 +305,6 @@ class _DetailPageState extends State<DetailPage> {
                                 return ListTile(
                                   title: Text(comment.nama),
                                   subtitle: Text(comment.isi),
-                                  trailing: Text(
-                                    DateFormat('dd MMM yyyy HH:mm')
-                                        .format(comment.time),
-                                  ),
                                 );
                               },
                             );
@@ -345,7 +341,6 @@ class _DetailPageState extends State<DetailPage> {
           .collection('laporan')
           .doc(docId)
           .collection('comments')
-          .orderBy('timestamp', descending: true)
           .get();
 
       List<Komentar> comments = commentSnapshot.docs.map((doc) {
@@ -353,7 +348,6 @@ class _DetailPageState extends State<DetailPage> {
         return Komentar(
           nama: data['nama'] ?? '',
           isi: data['isi'] ?? '',
-          time: (data['timestamp'] as Timestamp?)?.toDate() ?? DateTime.now(),
         );
       }).toList();
 

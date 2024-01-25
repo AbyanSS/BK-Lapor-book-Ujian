@@ -31,7 +31,6 @@ class _AllLaporanState extends State<AllLaporan> {
             return Komentar(
               nama: map['nama'],
               isi: map['isi'],
-              time: map['time'],
             );
           }).toList();
 
